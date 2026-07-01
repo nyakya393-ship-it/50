@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<h2>入力</h2>
+
+<form id="form">
+
+  <input id="stage" placeholder="ステージ">
+  <input id="weapon" placeholder="武器">
+  <input id="sub" placeholder="サブ">
+  <input id="special" placeholder="スペシャル">
+
+  <input id="kills" type="number" placeholder="キル">
+  <input id="deaths" type="number" placeholder="デス">
+  <input id="paint" type="number" placeholder="塗り">
+
+  <select id="result">
+    <option value="win">WIN</option>
+    <option value="lose">LOSE</option>
+  </select>
+
+  <button>保存</button>
+
+</form>
+
+<script src="./script.js"></script>
+<script>
+document.getElementById("form").onsubmit = e => {
+  e.preventDefault();
+
+  const data = getBattles();
+
+  data.push({
+    id: Date.now(),
+    stage: stage.value,
+    weapon: weapon.value,
+    sub: sub.value,
+    special: special.value,
+    kills: +kills.value,
+    deaths: +deaths.value,
+    paint: +paint.value,
+    result: result.value
+  });
+
+  saveBattles(data);
+
+  location.href = "index.html";
+};
+</script>
+
+</body>
+</html>
