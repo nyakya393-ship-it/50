@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<h2>統計</h2>
+
+<div id="stats"></div>
+
+<script src="./script.js"></script>
+<script>
+const data = getBattles();
+
+const wins = data.filter(b => b.result === "win").length;
+const kills = data.reduce((a,b)=>a+b.kills,0);
+const deaths = data.reduce((a,b)=>a+b.deaths,0);
+
+document.getElementById("stats").innerHTML = `
+  <div>試合数: ${data.length}</div>
+  <div>勝率: ${(wins/data.length*100 || 0).toFixed(1)}%</div>
+  <div>K/D: ${(kills/deaths || 0).toFixed(2)}</div>
+`;
+</script>
+
+</body>
+</html>
